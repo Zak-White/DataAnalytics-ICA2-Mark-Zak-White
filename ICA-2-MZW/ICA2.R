@@ -34,3 +34,9 @@ projectdevelopers_df
 AssetsDevelopers <- tbl(Icadb, "AssetsDevelopers")
 assetsdevelopers_df <- collect(AssetsDevelopers)
 assetsdevelopers_df
+
+dbRemoveTable(Icadb, "ProjectsBudget")
+dbExecute(Icadb, "CREATE Table ProjectsBudget AS
+                  SELECT Budget, CustomerCountry
+                  FROM Projects, Customers")
+dbReadTable(Icadb, "ProjectsBudget")
