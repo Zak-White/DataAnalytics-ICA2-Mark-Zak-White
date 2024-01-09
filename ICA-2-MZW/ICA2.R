@@ -8,6 +8,29 @@ dbListTables(Icadb)
 dbListFields(Icadb, "Projects")
 
 Projects <- tbl(Icadb, "Projects")
-Projects
 projects_df <- collect(Projects)
 projects_df
+
+Assets <- tbl(Icadb, "Assets")
+assets_df <- collect(Assets)
+assets_df
+
+Developers <- tbl(Icadb, "Developers")
+developers_df <- collect(Developers)
+developers_df
+
+Timelines <- tbl(Icadb, "Timelines")
+timelines_df <- collect(Timelines)
+timelines_df
+
+Customers <- tbl(Icadb, "Customers")
+Customers_df <- collect(Customers)
+Customers_df
+
+ProjectDevelopers <- tbl(Icadb, "ProjectDevelopers")
+projectdevelopers_df <- collect(ProjectDevelopers)
+projectdevelopers_df
+
+AssetsDevelopers <- tbl(Icadb, "AssetsDevelopers")
+assetsdevelopers_df <- collect(AssetsDevelopers)
+assetsdevelopers_df
