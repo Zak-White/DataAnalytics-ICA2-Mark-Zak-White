@@ -191,7 +191,7 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Assets"            "AssetsDevelopers"  "Customers"        
 [4] "Developers"        "ProjectDevelopers" "Projects"         
-[7] "Timelines"        </code></pre>
+[7] "ProjectsBudget"    "Timelines"        </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListFields</span>(Icadb, <span class="st">"Projects"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -336,13 +336,12 @@ Attaching package: 'dplyr'</code></pre>
 10      10           9
 # ℹ 32 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dbRemoveTable(Icadb, "ProjectsBudget")</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbExecute</span>(Icadb, <span class="st">"CREATE Table ProjectsBudget AS</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="st">                  SELECT Budget, CustomerCountry</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="st">                  FROM Projects, Customers"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbRemoveTable</span>(Icadb, <span class="st">"ProjectsBudget"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbExecute</span>(Icadb, <span class="st">"CREATE Table ProjectsBudget AS</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="st">                  SELECT Budget, CustomerCountry</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="st">                 FROM Projects, Customers"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
@@ -413,6 +412,23 @@ Attaching package: 'dplyr'</code></pre>
 62 450000           Spain
 63 450000     Netherlands
 64 450000              UK</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span><span class="fu">inner_join</span>( Customers_df, projects_df,</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CustomerID"</span>))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>)]</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 4
+  CustomerID CustomerCountry ProjectName       Budget
+       &lt;int&gt; &lt;chr&gt;           &lt;chr&gt;              &lt;int&gt;
+1          1 UK              Galaxy Quest      100000
+2          2 France          Mystic Realms     200000
+3          3 Germany         Shadow Legacy     150000
+4          4 Italy           Urban Adventure   250000
+5          5 Spain           Ocean Odyssey     300000
+6          6 Spain           Desert Survival   350000
+7          7 Netherlands     Frozen Frontier   400000
+8          8 UK              Cybernetic Dreams 450000</code></pre>
 </div>
 </div>
 

@@ -62,14 +62,15 @@ assetsdevelopers_df <- collect(AssetsDevelopers)
 assetsdevelopers_df
 
 dbRemoveTable(Icadb, "ProjectsBudget")
-
 dbExecute(Icadb, "CREATE Table ProjectsBudget AS
 
                   SELECT Budget, CustomerCountry
 
-                  FROM Projects, Customers")
-
+                 FROM Projects, Customers")
 dbReadTable(Icadb, "ProjectsBudget")
 
-
+ProjectsBudget_df <-inner_join( Customers_df, projects_df,
+                                      by = c("CustomerID"))
+ProjectsBudget_df <- ProjectsBudget_df[,-c(2,3,5,7,8,10)]
+ProjectsBudget_df
 ```
