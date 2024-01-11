@@ -345,78 +345,12 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbReadTable</span>(Icadb, <span class="st">"ProjectsBudget"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Budget CustomerCountry
-1  100000              UK
-2  100000          France
-3  100000         Germany
-4  100000           Italy
-5  100000           Spain
-6  100000           Spain
-7  100000     Netherlands
-8  100000              UK
-9  200000              UK
-10 200000          France
-11 200000         Germany
-12 200000           Italy
-13 200000           Spain
-14 200000           Spain
-15 200000     Netherlands
-16 200000              UK
-17 150000              UK
-18 150000          France
-19 150000         Germany
-20 150000           Italy
-21 150000           Spain
-22 150000           Spain
-23 150000     Netherlands
-24 150000              UK
-25 250000              UK
-26 250000          France
-27 250000         Germany
-28 250000           Italy
-29 250000           Spain
-30 250000           Spain
-31 250000     Netherlands
-32 250000              UK
-33 300000              UK
-34 300000          France
-35 300000         Germany
-36 300000           Italy
-37 300000           Spain
-38 300000           Spain
-39 300000     Netherlands
-40 300000              UK
-41 350000              UK
-42 350000          France
-43 350000         Germany
-44 350000           Italy
-45 350000           Spain
-46 350000           Spain
-47 350000     Netherlands
-48 350000              UK
-49 400000              UK
-50 400000          France
-51 400000         Germany
-52 400000           Italy
-53 400000           Spain
-54 400000           Spain
-55 400000     Netherlands
-56 400000              UK
-57 450000              UK
-58 450000          France
-59 450000         Germany
-60 450000           Italy
-61 450000           Spain
-62 450000           Spain
-63 450000     Netherlands
-64 450000              UK</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span><span class="fu">inner_join</span>( Customers_df, projects_df,</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CustomerID"</span>))</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>)]</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dbReadTable(Icadb, "ProjectsBudget")</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span><span class="fu">inner_join</span>( Customers_df, projects_df,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CustomerID"</span>))</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>)]</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 4
   CustomerID CustomerCountry ProjectName       Budget

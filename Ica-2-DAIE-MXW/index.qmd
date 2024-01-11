@@ -67,7 +67,7 @@ dbExecute(Icadb, "CREATE Table ProjectsBudget AS
                   SELECT Budget, CustomerCountry
 
                  FROM Projects, Customers")
-dbReadTable(Icadb, "ProjectsBudget")
+#dbReadTable(Icadb, "ProjectsBudget")
 
 ProjectsBudget_df <-inner_join( Customers_df, projects_df,
                                       by = c("CustomerID"))
