@@ -74,6 +74,7 @@ ProjectsBudget_df <-inner_join( Customers_df, projects_df,
 ProjectsBudget_df <- ProjectsBudget_df[,-c(2,3,5,7,8,10)]
 ProjectsBudget_df <- ProjectsBudget_df[order(-ProjectsBudget_df$Budget),]
 ProjectsBudget_df <- ProjectsBudget_df %>% group_by(CustomerCountry)
-ProjectsBudget_df<- ProjectsBudget_df %>% summarise(sum(Budget))
-ProjectsBudget_df 
+ProjectsBudget_df <- ProjectsBudget_df %>% summarise(sum(Budget))
+ProjectsBudget_df <- ProjectsBudget_df[order(-ProjectsBudget_df$Budget)]
+ProjectsBudget_df
 ```
