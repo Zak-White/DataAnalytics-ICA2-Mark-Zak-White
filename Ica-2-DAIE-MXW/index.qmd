@@ -80,6 +80,9 @@ ProjectsBudget_df
 AssetsProjects_df <- inner_join(projects_df, assets_df,
                                 by = c("ProjectID"))
 AssetsProjects_df <-AssetsProjects_df[,-c(5,6,7)]
-AssetsProjects_df <- AssetsProjects_df %>% group_by(ProjectName) %>% sum(AssetID)
+#AssetsProjects_df <- AssetsProjects_df %>% group_by(ProjectName) %>% sum(AssetID)
+EndDate <- 
+diff_dates = difftime(AssetsProjects_df$EndDate - AssetsProjects_df$StartDate, units = "days")
+diff_dates
 AssetsProjects_df
 ```
