@@ -79,8 +79,7 @@ ProjectsBudget_df
 
 AssetsProjects_df <- inner_join(projects_df, assets_df,
                                 by = c("ProjectID"))
-AssetsProjects_df <-AssetsProjects_df[,-c(1,5,6,7)]
-AssetsProjects_df <- AssetsProjects_df %>% group_by(ProjectName)
-AssetsProjects_df <- AssetsProjects_df %>% summarise(count = AssetID)
+AssetsProjects_df <-AssetsProjects_df[,-c(5,6,7)]
+AssetsProjects_df <- AssetsProjects_df %>% group_by(ProjectName) %>% sum(AssetID)
 AssetsProjects_df
 ```
