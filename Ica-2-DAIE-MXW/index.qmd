@@ -15,6 +15,8 @@ library(dplyr)
 
 library(lubridate)
 
+library(stringr)
+
 Icadb <- dbConnect(SQLite(), "ICA_2023.sqlite")
 
 dbListTables(Icadb)
@@ -71,6 +73,7 @@ dbExecute(Icadb, "CREATE Table ProjectsBudget AS
                  FROM Projects, Customers")
 #dbReadTable(Icadb, "ProjectsBudget")
 
+#A-1 Mostly working just not printing in correct order but the code is all there
 ProjectsBudget_df <-inner_join( Customers_df, projects_df,
                                       by = c("CustomerID"))
 ProjectsBudget_df <- ProjectsBudget_df[,-c(2,3,5,7,8,10)]
@@ -79,6 +82,7 @@ ProjectsBudget_df <- ProjectsBudget_df %>% group_by(CustomerCountry)
 ProjectsBudget_df <- ProjectsBudget_df %>% summarise(sum(Budget))
 ProjectsBudget_df
 
+#A-2 I got the days between and I have the mean code there but this question would not cooperate with me at all
 AssetsProjects_df <- inner_join(projects_df, assets_df,
                                 by = c("ProjectID"))
 AssetsProjects_df <-AssetsProjects_df[,-c(5,6,7,8,9,10)]
@@ -86,6 +90,11 @@ AssetsProjects_df <- AssetsProjects_df %>% group_by(ProjectID) %>% mutate(EndDat
 
 AssetsProjects_df
 
-
+#A-3 Going to create a table that adds projects and developers and where the project is completed it will print that out
+status <- projects_df$Status
+status
+projectdevelopers_df
+projectdevelopers_df <- projectdevelopers_df %>% mutate(Status = status) %>% group_by(DeveloperID) %>% summarize(DevComplete = sum(str_count(status, "Completed")))
+projectdevelopers_df
 
 ```
