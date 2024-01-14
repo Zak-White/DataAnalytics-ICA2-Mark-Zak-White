@@ -83,7 +83,7 @@ AssetsProjects_df <- inner_join(projects_df, assets_df,
                                 by = c("ProjectID"))
 AssetsProjects_df <-AssetsProjects_df[,-c(5,6,7,8,9,10)]
 AssetsProjects_df <- AssetsProjects_df %>% group_by(ProjectID)
-AssetsProjects_df <- AssetsProjects_df %>% mutate(EndDate = mdy_hms(EndDate),StartDate = mdy_hms(StartDate)) %>% mutate(diff=as.numeric(difftime(EndDate, StartDate, units = "days"))) 
+AssetsProjects_df <- AssetsProjects_df %>% mutate(EndDate = ymd(EndDate),StartDate = ymd(StartDate)) %>% mutate(diff=as.numeric(difftime(EndDate, StartDate, units = "days"))) 
 #EndDate <- 
 #diff_dates = difftime(AssetsProjects_df$EndDate - AssetsProjects_df$StartDate, units = "days")
 #diff_dates
