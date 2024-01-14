@@ -106,7 +106,7 @@ projectdevelopers_df
 projects_df <- projects_df %>% filter(Budget > 200000) %>% filter(Budget < 350000)
 projects_df
 
-#custom query 2: Select projectID and AssetID from asset table using the distinct function and the arrange which is dplyrs version of the SQL query DISTINCT and ORDER_BY
+#custom query 2: Select projectID and AssetID from asset table using the distinct function and the arrange which is dplyrs version of the SQL query DISTINCT and ORDER_BY Reference: https://sparkbyexamples.com/r-programming/dplyr-arrange-function-in-r/#:~:text=R%20arrange()%20Ascending%20Order,either%20ascending%20or%20descending%20order.
 assets_df <- assets_df %>% distinct(assets_df, pick(contains("ID"))) %>% arrange(desc(AssetID)) %>% arrange(desc(ProjectID))
 assets_df
 
