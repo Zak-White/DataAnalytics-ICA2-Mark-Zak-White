@@ -448,26 +448,34 @@ Caused by warning:
 2         211           4
 3         213           4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom SQL Query 1 = Select specific Names from the project table</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">#QueryTerm1 &lt;- "Galaxy"</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Query &lt;- dbGetQuery(Projects, 'SELECT \"ProjectName\",\ </span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a> <span class="co">#                   FROM projects_df\ </span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                  WHERE ProjectName\ </span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                  LIKE QueryTerm1')</span></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Query</span></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="co">#specialID &lt;- projectdevelopers_df$ProjectID</span></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co">#projects_df &lt;-projects_df %&gt;% filter(specialID == 108)</span></span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="co">#projects_df</span></span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>projects_df <span class="ot">&lt;-</span> projects_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&gt;</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&lt;</span> <span class="dv">350000</span>)</span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>projects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom SQL Query 1 = Select specific budget ranges from the project table </span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter is the dplyr libraries version of Like and or according to multiple articles I read https://sebastiansauer.github.io/dplyr_filter/ and https://stackoverflow.com/questions/32829358/dplyr-filter-with-sql-like-wildcard</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>projects_df <span class="ot">&lt;-</span> projects_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&gt;</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&lt;</span> <span class="dv">350000</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>projects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 7
   ProjectID ProjectName     StartDate  EndDate    Budget Status      CustomerID
       &lt;int&gt; &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            &lt;int&gt;
 1       104 Urban Adventure 2022-10-01 2023-02-31 250000 Completed            4
 2       105 Ocean Odyssey   2023-03-01 2024-06-30 300000 In Progress          5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>assets_df <span class="ot">&lt;-</span> assets_df <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(assets_df, <span class="fu">pick</span>(<span class="fu">contains</span>(<span class="st">"ID"</span>))) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(AssetID)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ProjectID))</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>assets_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 42 × 5
+   AssetID ProjectID AssetName Type               CreationDate
+     &lt;int&gt;     &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;       
+ 1      39       104 Asset 39  Character Model    2021-04-15  
+ 2      35       104 Asset 35  Character Model    2021-06-15  
+ 3      31       104 Asset 31  3D Model           2021-02-15  
+ 4      27       104 Asset 27  UI Element         2021-04-15  
+ 5      23       104 Asset 23  Environment Design 2021-06-15  
+ 6      19       104 Asset 19  Texture            2021-02-15  
+ 7      15       104 Asset 15  Animation          2021-04-15  
+ 8      11       104 Asset 11  Sound              2021-06-15  
+ 9       7       104 Asset 7   Texture            2021-02-15  
+10       3       104 Asset 3   3D Model           2021-04-15  
+# ℹ 32 more rows</code></pre>
 </div>
 </div>
 
