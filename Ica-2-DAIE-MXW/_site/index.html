@@ -381,8 +381,7 @@ Attaching package: 'lubridate'</code></pre>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(projects_df, assets_df,</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"ProjectID"</span>))</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span>AssetsProjects_df[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)]</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span> AssetsProjects_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ProjectID)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span> AssetsProjects_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">EndDate =</span> <span class="fu">ymd</span>(EndDate),<span class="at">StartDate =</span> <span class="fu">ymd</span>(StartDate)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">diff=</span><span class="fu">as.numeric</span>(<span class="fu">difftime</span>(EndDate, StartDate, <span class="at">units =</span> <span class="st">"days"</span>))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span> AssetsProjects_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ProjectID) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">EndDate =</span> <span class="fu">ymd</span>(EndDate),<span class="at">StartDate =</span> <span class="fu">ymd</span>(StartDate)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">diff=</span><span class="fu">as.numeric</span>(<span class="fu">difftime</span>(EndDate, StartDate, <span class="at">units =</span> <span class="st">"days"</span>))) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">meanDays =</span> <span class="fu">mean</span>(diff)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: There was 1 warning in `mutate()`.
 ℹ In argument: `EndDate = ymd(EndDate)`.
@@ -390,26 +389,22 @@ Attaching package: 'lubridate'</code></pre>
 Caused by warning:
 !  10 failed to parse.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#EndDate &lt;- </span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#diff_dates = difftime(AssetsProjects_df$EndDate - AssetsProjects_df$StartDate, units = "days")</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">#diff_dates</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 42 × 6
+<pre><code># A tibble: 42 × 7
 # Groups:   ProjectID [4]
-   ProjectID ProjectName  StartDate  EndDate    CreationDate  diff
-       &lt;int&gt; &lt;chr&gt;        &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt;
- 1       101 Galaxy Quest 2021-01-01 2021-09-30 2021-05-15     272
- 2       101 Galaxy Quest 2021-01-01 2021-09-30 2021-03-15     272
- 3       101 Galaxy Quest 2021-01-01 2021-09-30 2021-01-15     272
- 4       101 Galaxy Quest 2021-01-01 2021-09-30 2021-05-15     272
- 5       101 Galaxy Quest 2021-01-01 2021-09-30 2021-03-15     272
- 6       101 Galaxy Quest 2021-01-01 2021-09-30 2021-01-15     272
- 7       101 Galaxy Quest 2021-01-01 2021-09-30 2021-05-15     272
- 8       101 Galaxy Quest 2021-01-01 2021-09-30 2021-03-15     272
- 9       101 Galaxy Quest 2021-01-01 2021-09-30 2021-01-15     272
-10       101 Galaxy Quest 2021-01-01 2021-09-30 2021-05-15     272
+   ProjectID ProjectName  StartDate  EndDate    CreationDate  diff meanDays
+       &lt;int&gt; &lt;chr&gt;        &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+ 1       101 Galaxy Quest 2021-01-01 2021-09-30 2021-05-15     272      272
+ 2       101 Galaxy Quest 2021-01-01 2021-09-30 2021-03-15     272      272
+ 3       101 Galaxy Quest 2021-01-01 2021-09-30 2021-01-15     272      272
+ 4       101 Galaxy Quest 2021-01-01 2021-09-30 2021-05-15     272      272
+ 5       101 Galaxy Quest 2021-01-01 2021-09-30 2021-03-15     272      272
+ 6       101 Galaxy Quest 2021-01-01 2021-09-30 2021-01-15     272      272
+ 7       101 Galaxy Quest 2021-01-01 2021-09-30 2021-05-15     272      272
+ 8       101 Galaxy Quest 2021-01-01 2021-09-30 2021-03-15     272      272
+ 9       101 Galaxy Quest 2021-01-01 2021-09-30 2021-01-15     272      272
+10       101 Galaxy Quest 2021-01-01 2021-09-30 2021-05-15     272      272
 # ℹ 32 more rows</code></pre>
 </div>
 </div>
