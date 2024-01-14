@@ -99,10 +99,21 @@ projectdevelopers_df
 projectdevelopers_df <- projectdevelopers_df %>% mutate(Status = status) %>% group_by(DeveloperID) %>% summarize(DevComplete = ComStatus) %>% arrange(desc(ComStatus))
 #I am not sure why they are all equal to 4 as I thought the group by would split it per case but This is the basics of How you would do this question
 projectdevelopers_df <-projectdevelopers_df[1:3,] #This is how you select the top 3 values
-
-# Custom SQL Query 1 = Select specific ID's from the project table
 projectdevelopers_df
-specialID <- projectdevelopers_df$ProjectID
-projects_df <-projects_df %>% filter(specialID == 108)
+
+
+# Custom SQL Query 1 = Select specific Names from the project table
+
+#QueryTerm1 <- "Galaxy"
+#Query <- dbGetQuery(Projects, 'SELECT \"ProjectName\",\ 
+ #                   FROM projects_df\ 
+  #                  WHERE ProjectName\ 
+  #                  LIKE QueryTerm1')
+#Query
+#specialID <- projectdevelopers_df$ProjectID
+#projects_df <-projects_df %>% filter(specialID == 108)
+#projects_df
+
+projects_df <- projects_df %>% filter(Budget > 200000) %>% filter(Budget < 350000)
 projects_df
 ```
