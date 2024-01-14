@@ -79,6 +79,7 @@ ProjectsBudget_df <-inner_join( Customers_df, projects_df,
 ProjectsBudget_df <- ProjectsBudget_df[,-c(2,3,5,7,8,10)]
 ProjectsBudget_df <- ProjectsBudget_df[order(-ProjectsBudget_df$Budget),] # Should showcase the order correctly but it no longer does. This works before the summarise?
 ProjectsBudget_df <- ProjectsBudget_df %>% group_by(CustomerCountry)
+ProjectsBudget_df <- ProjectsBudget_df %>% arrange(desc(Budget))
 ProjectsBudget_df <- ProjectsBudget_df %>% summarise(sum(Budget))
 ProjectsBudget_df
 
@@ -93,8 +94,11 @@ AssetsProjects_df
 #A-3 Going to create a table that adds projects and developers and where the project is completed it will print that out
 status <- projects_df$Status
 status
+ComStatus <- sum(str_count(status, "Completed"))
 projectdevelopers_df
-projectdevelopers_df <- projectdevelopers_df %>% mutate(Status = status) %>% group_by(DeveloperID) %>% summarize(DevComplete = sum(str_count(status, "Completed")))
+projectdevelopers_df <- projectdevelopers_df %>% mutate(Status = status) %>% group_by(DeveloperID) %>% summarize(DevComplete = ComStatus) %>% arrange(desc(ComStatus))
+#I am not sure why they are all equal to 4 as I thought the group by would split it per case but This is the basics of How you would do this question
+projectdevelopers_df <-projectdevelopers_df[1:3,] #This is how you select the top 3 values
 projectdevelopers_df
 
 ```
