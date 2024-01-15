@@ -31,6 +31,10 @@ projects_df <- collect(Projects)
 
 projects_df
 
+projects_df2 <- collect(Projects)
+
+projects_df2
+
 Assets <- tbl(Icadb, "Assets")
 
 assets_df <- collect(Assets)
@@ -70,6 +74,7 @@ AssetsDevelopers <- tbl(Icadb, "AssetsDevelopers")
 assetsdevelopers_df <- collect(AssetsDevelopers)
 
 assetsdevelopers_df
+
 
 dbRemoveTable(Icadb, "ProjectsBudget")
 dbExecute(Icadb, "CREATE Table ProjectsBudget AS
@@ -119,10 +124,7 @@ assets_df
 
 #PART B:
 #Setting up the data to be modelled.
-projectdevelopers_df2 
-DevExp <- developers_df$ExperienceYears
-DevExp
-
-projectdevelopers_df2 <- projectdevelopers_df2 %>% mutate(devExp = DevExp) %>% group_by(DeveloperID)
-projectdevelopers_df2
+TimeLineBudget_df <- inner_join(timelines_df, projects_df2,
+                                by = c("ProjectID"))
+TimeLineBudget_df
 ```
