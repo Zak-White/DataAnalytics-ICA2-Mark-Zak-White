@@ -17,6 +17,8 @@ library(lubridate)
 
 library(stringr)
 
+library(tidyverse)
+
 Icadb <- dbConnect(SQLite(), "ICA_2023.sqlite")
 
 dbListTables(Icadb)
@@ -58,6 +60,10 @@ ProjectDevelopers <- tbl(Icadb, "ProjectDevelopers")
 projectdevelopers_df <- collect(ProjectDevelopers)
 
 projectdevelopers_df
+
+projectdevelopers_df2 <- collect(ProjectDevelopers)
+
+projectdevelopers_df2
 
 AssetsDevelopers <- tbl(Icadb, "AssetsDevelopers")
 
@@ -110,4 +116,13 @@ projects_df
 assets_df <- assets_df %>% distinct(assets_df, pick(contains("ID"))) %>% arrange(desc(AssetID)) %>% arrange(desc(ProjectID))
 assets_df
 
+
+#PART B:
+#Setting up the data to be modelled.
+projectdevelopers_df2 
+DevExp <- developers_df$ExperienceYears
+DevExp
+
+projectdevelopers_df2 <- projectdevelopers_df2 %>% mutate(devExp = DevExp) %>% group_by(DeveloperID)
+projectdevelopers_df2
 ```
