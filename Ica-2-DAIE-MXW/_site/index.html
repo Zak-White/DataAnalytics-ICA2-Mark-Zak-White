@@ -570,15 +570,30 @@ Caused by warning:
 </div>
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>Budget <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>Budget</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>DaysInDiff <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>DifferenceInDays</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Budget,DaysInDiff)</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>Regression <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(Budget <span class="sc">~</span> DifferenceInDays, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(Regression)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>Regression <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(Budget <span class="sc">~</span> DifferenceInDays, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Budget,DaysInDiff,<span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">abline</span>(Regression),</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Budget"</span>, <span class="at">ylab =</span> <span class="st">"DaysInDifference"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in abline(Regression): only using the first two of 8 regression
 coefficients</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>projects_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 6
+  ProjectID ProjectName       StartDate  EndDate    Budget DifferenceInDays
+      &lt;int&gt; &lt;chr&gt;             &lt;date&gt;     &lt;date&gt;      &lt;int&gt;            &lt;dbl&gt;
+1       101 Galaxy Quest      2021-01-01 2021-09-30 100000              272
+2       102 Mystic Realms     2021-10-01 2021-12-31 200000               91
+3       103 Shadow Legacy     2022-01-01 2022-09-30 150000              272
+4       104 Urban Adventure   2022-10-01 NA         250000               NA
+5       105 Ocean Odyssey     2023-03-01 2024-06-30 300000              487
+6       106 Desert Survival   2024-07-01 2024-12-31 350000              183
+7       107 Frozen Frontier   2025-01-01 2025-06-30 400000              180
+8       108 Cybernetic Dreams 2025-07-01 2025-12-31 450000              183</code></pre>
 </div>
 </div>
 

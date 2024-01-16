@@ -129,9 +129,11 @@ projects_df2 <- projects_df2[,-c(6,7)]
 projects_df2 <- projects_df2 %>% mutate(StartDate  = ymd(StartDate),EndDate = ymd(EndDate)) %>% mutate(DifferenceInDays = as.numeric(difftime(EndDate, StartDate, units = "days")))
 Budget <- projects_df2$Budget
 DaysInDiff <- projects_df2$DifferenceInDays
-plot(Budget,DaysInDiff)
 Regression <- projects_df2 %>% lm(Budget ~ DifferenceInDays, data = .) %>% summary()
-abline(Regression)
+plot(Budget,DaysInDiff,col = "red",
+     abline(Regression),
+     xlab = "Budget", ylab = "DaysInDifference")
+projects_df2
 
 
 ```
