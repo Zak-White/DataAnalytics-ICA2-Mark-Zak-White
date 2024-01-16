@@ -250,195 +250,41 @@ Attaching package: 'lubridate'</code></pre>
 [6] "Status"      "CustomerID" </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Projects <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"Projects"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>projects_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Projects)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>projects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 7
-  ProjectID ProjectName       StartDate  EndDate    Budget Status     CustomerID
-      &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
-1       101 Galaxy Quest      2021-01-01 2021-09-30 100000 Completed           1
-2       102 Mystic Realms     2021-10-01 2021-12-31 200000 Completed           2
-3       103 Shadow Legacy     2022-01-01 2022-09-30 150000 Completed           3
-4       104 Urban Adventure   2022-10-01 2023-02-31 250000 Completed           4
-5       105 Ocean Odyssey     2023-03-01 2024-06-30 300000 In Progre…          5
-6       106 Desert Survival   2024-07-01 2024-12-31 350000 Planned             6
-7       107 Frozen Frontier   2025-01-01 2025-06-30 400000 Planned             7
-8       108 Cybernetic Dreams 2025-07-01 2025-12-31 450000 Planned             8</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> <span class="fu">collect</span>(Projects)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>projects_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 7
-  ProjectID ProjectName       StartDate  EndDate    Budget Status     CustomerID
-      &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
-1       101 Galaxy Quest      2021-01-01 2021-09-30 100000 Completed           1
-2       102 Mystic Realms     2021-10-01 2021-12-31 200000 Completed           2
-3       103 Shadow Legacy     2022-01-01 2022-09-30 150000 Completed           3
-4       104 Urban Adventure   2022-10-01 2023-02-31 250000 Completed           4
-5       105 Ocean Odyssey     2023-03-01 2024-06-30 300000 In Progre…          5
-6       106 Desert Survival   2024-07-01 2024-12-31 350000 Planned             6
-7       107 Frozen Frontier   2025-01-01 2025-06-30 400000 Planned             7
-8       108 Cybernetic Dreams 2025-07-01 2025-12-31 450000 Planned             8</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>Assets <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"Assets"</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>assets_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Assets)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>assets_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 42 × 5
-   AssetID ProjectID AssetName Type               CreationDate
-     &lt;int&gt;     &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;       
- 1       1       102 Asset 1   Level Design       2021-02-15  
- 2       2       103 Asset 2   Cinematic          2021-03-15  
- 3       3       104 Asset 3   3D Model           2021-04-15  
- 4       4       101 Asset 4   Gameplay Script    2021-05-15  
- 5       5       102 Asset 5   Environment Design 2021-06-15  
- 6       6       103 Asset 6   Level Design       2021-01-15  
- 7       7       104 Asset 7   Texture            2021-02-15  
- 8       8       101 Asset 8   Cinematic          2021-03-15  
- 9       9       102 Asset 9   Texture            2021-04-15  
-10      10       103 Asset 10  Environment Design 2021-05-15  
-# ℹ 32 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>Developers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"Developers"</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>developers_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Developers)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>developers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 14 × 4
-   DeveloperID Name           Specialization    ExperienceYears
-         &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;                       &lt;int&gt;
- 1         201 Alice Johnson  Programmer                      5
- 2         202 Bob Smith      Programmer                      3
- 3         203 Carol White    Artist                          4
- 4         204 Dave Brown     Game Designer                   6
- 5         205 Eve Davis      Animator                        7
- 6         206 Frank Miller   Sound Engineer                  5
- 7         207 Grace Wilson   Level Designer                  2
- 8         208 Henry Moore    UI/UX Designer                  4
- 9         209 Isabel Taylor  Quality Assurance               3
-10         210 Jack Martinez  Technical Artist                5
-11         211 Karen Garcia   Producer                        8
-12         212 Luis Hernandez Writer                          6
-13         213 Morgan Lee     Project Manager                10
-14         214 Jordan Kim     Project Manager                 8</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>Timelines <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"Timelines"</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>timelines_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Timelines)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>timelines_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 5
-  TimelineID ProjectID Milestone     ExpectedCompletionDate ActualCompletionDate
-       &lt;int&gt;     &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                  &lt;chr&gt;               
-1          1       101 Beta Release  2021-01-15             2021-01-14          
-2          2       102 Beta Release  2021-07-15             2021-07-14          
-3          3       103 Beta Release  2022-03-15             2022-03-14          
-4          4       104 Beta Release  2022-10-15             2022-10-14          
-5          5       105 Beta Release  2023-03-01             &lt;NA&gt;                
-6          6       106 Pre-producti… 2023-10-01             &lt;NA&gt;                
-7          7       107 Project Plan… 2024-03-01             &lt;NA&gt;                
-8          8       108 Project Plan… 2024-10-01             &lt;NA&gt;                </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>Customers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"Customers"</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>Customers_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Customers)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>Customers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 4
-  CustomerID CustomerName          CustomerCity CustomerCountry
-       &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;        &lt;chr&gt;          
-1          1 Vertex Games          London       UK             
-2          2 Eclipse Entertainment Paris        France         
-3          3 Aurora Studios        Berlin       Germany        
-4          4 Nebula Creations      Rome         Italy          
-5          5 Cosmic Interactive    Madrid       Spain          
-6          6 Galactic Games        Barcelona    Spain          
-7          7 Nova Software         Amsterdam    Netherlands    
-8          8 Infinity Designs      Edinburgh    UK             </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ProjectDevelopers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"ProjectDevelopers"</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(ProjectDevelopers)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 3
-  ProjectID DeveloperID Role 
-      &lt;int&gt;       &lt;int&gt; &lt;chr&gt;
-1       101         214 Lead 
-2       102         213 Lead 
-3       103         201 Lead 
-4       104         213 Lead 
-5       105         214 Lead 
-6       106         211 Lead 
-7       107         214 Lead 
-8       108         211 Lead </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df2 <span class="ot">&lt;-</span> <span class="fu">collect</span>(ProjectDevelopers)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 3
-  ProjectID DeveloperID Role 
-      &lt;int&gt;       &lt;int&gt; &lt;chr&gt;
-1       101         214 Lead 
-2       102         213 Lead 
-3       103         201 Lead 
-4       104         213 Lead 
-5       105         214 Lead 
-6       106         211 Lead 
-7       107         214 Lead 
-8       108         211 Lead </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>AssetsDevelopers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"AssetsDevelopers"</span>)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>assetsdevelopers_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(AssetsDevelopers)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>assetsdevelopers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 42 × 2
-   AssetID DeveloperID
-     &lt;int&gt;       &lt;int&gt;
- 1       1           3
- 2       2           8
- 3       3           8
- 4       4           2
- 5       5          11
- 6       6           7
- 7       7           8
- 8       8           6
- 9       9           2
-10      10           9
-# ℹ 32 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbRemoveTable</span>(Icadb, <span class="st">"ProjectsBudget"</span>)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbExecute</span>(Icadb, <span class="st">"CREATE Table ProjectsBudget AS</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="st">                  SELECT Budget, CustomerCountry</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="st">                 FROM Projects, Customers"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>projects_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Projects)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> <span class="fu">collect</span>(Projects)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>Assets <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"Assets"</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>assets_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Assets)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>Developers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"Developers"</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>developers_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Developers)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>Timelines <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"Timelines"</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>timelines_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Timelines)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>Customers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"Customers"</span>)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>Customers_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(Customers)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>ProjectDevelopers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"ProjectDevelopers"</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(ProjectDevelopers)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df2 <span class="ot">&lt;-</span> <span class="fu">collect</span>(ProjectDevelopers)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>AssetsDevelopers <span class="ot">&lt;-</span> <span class="fu">tbl</span>(Icadb, <span class="st">"AssetsDevelopers"</span>)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>assetsdevelopers_df <span class="ot">&lt;-</span> <span class="fu">collect</span>(AssetsDevelopers)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dbRemoveTable</span>(Icadb, <span class="st">"ProjectsBudget"</span>)</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="fu">dbExecute</span>(Icadb, <span class="st">"CREATE Table ProjectsBudget AS</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="st">                  SELECT Budget, CustomerCountry</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="st">                 FROM Projects, Customers"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dbReadTable(Icadb, "ProjectsBudget")</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">#A-1 Mostly working just not printing in correct order but the code is all there</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span><span class="fu">inner_join</span>( Customers_df, projects_df,</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CustomerID"</span>))</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>)]</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df[<span class="fu">order</span>(<span class="sc">-</span>ProjectsBudget_df<span class="sc">$</span>Budget),] <span class="co"># Should showcase the order correctly but it no longer does. This works before the summarise?</span></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(CustomerCountry)</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(Budget))</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">sum</span>(Budget))</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dbReadTable(Icadb, "ProjectsBudget")</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">#A-1 Mostly working just not printing in correct order but the code is all there</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span><span class="fu">inner_join</span>( Customers_df, projects_df,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CustomerID"</span>))</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>)]</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df[<span class="fu">order</span>(<span class="sc">-</span>ProjectsBudget_df<span class="sc">$</span>Budget),] <span class="co"># Should showcase the order correctly but it no longer does. This works before the summarise?</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(CustomerCountry)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(Budget))</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df <span class="ot">&lt;-</span> ProjectsBudget_df <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">sum</span>(Budget))</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>ProjectsBudget_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   CustomerCountry `sum(Budget)`
@@ -450,11 +296,11 @@ Attaching package: 'lubridate'</code></pre>
 5 Spain                  650000
 6 UK                     550000</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A-2 I got the days between and I have the mean code there but this question would not cooperate with me at all</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(projects_df, assets_df,</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"ProjectID"</span>))</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span>AssetsProjects_df[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)]</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span> AssetsProjects_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ProjectID) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">EndDate =</span> <span class="fu">ymd</span>(EndDate),<span class="at">StartDate =</span> <span class="fu">ymd</span>(StartDate)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">diff=</span><span class="fu">as.numeric</span>(<span class="fu">difftime</span>(EndDate, StartDate, <span class="at">units =</span> <span class="st">"days"</span>))) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">meanDays =</span> <span class="fu">mean</span>(diff)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A-2 I got the days between and I have the mean code there but this question would not cooperate with me at all</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(projects_df, assets_df,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"ProjectID"</span>))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span>AssetsProjects_df[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)]</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df <span class="ot">&lt;-</span> AssetsProjects_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ProjectID) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">EndDate =</span> <span class="fu">ymd</span>(EndDate),<span class="at">StartDate =</span> <span class="fu">ymd</span>(StartDate)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">diff=</span><span class="fu">as.numeric</span>(<span class="fu">difftime</span>(EndDate, StartDate, <span class="at">units =</span> <span class="st">"days"</span>))) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">meanDays =</span> <span class="fu">mean</span>(diff)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: There was 1 warning in `mutate()`.
 ℹ In argument: `EndDate = ymd(EndDate)`.
@@ -462,7 +308,7 @@ Attaching package: 'lubridate'</code></pre>
 Caused by warning:
 !  10 failed to parse.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>AssetsProjects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 42 × 7
 # Groups:   ProjectID [4]
@@ -480,15 +326,15 @@ Caused by warning:
 10       101 Galaxy Quest 2021-01-01 2021-09-30 2021-05-15     272      272
 # ℹ 32 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A-3 Going to create a table that adds projects and developers and where the project is completed it will print that out</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> projects_df<span class="sc">$</span>Status</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A-3 Going to create a table that adds projects and developers and where the project is completed it will print that out</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> projects_df<span class="sc">$</span>Status</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Completed"   "Completed"   "Completed"   "Completed"   "In Progress"
 [6] "Planned"     "Planned"     "Planned"    </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>ComStatus <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">str_count</span>(status, <span class="st">"Completed"</span>))</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ComStatus <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">str_count</span>(status, <span class="st">"Completed"</span>))</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 3
   ProjectID DeveloperID Role 
@@ -502,10 +348,10 @@ Caused by warning:
 7       107         214 Lead 
 8       108         211 Lead </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span> projectdevelopers_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> status) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(DeveloperID) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">DevComplete =</span> ComStatus) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ComStatus))</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co">#I am not sure why they are all equal to 4 as I thought the group by would split it per case but This is the basics of How you would do this question</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span>projectdevelopers_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,] <span class="co">#This is how you select the top 3 values</span></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span> projectdevelopers_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> status) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(DeveloperID) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">DevComplete =</span> ComStatus) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ComStatus))</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#I am not sure why they are all equal to 4 as I thought the group by would split it per case but This is the basics of How you would do this question</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span>projectdevelopers_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,] <span class="co">#This is how you select the top 3 values</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   DeveloperID DevComplete
@@ -514,10 +360,10 @@ Caused by warning:
 2         211           4
 3         213           4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom SQL Query 1 = Select specific budget ranges from the project table </span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter is the dplyr libraries version of Like and or according to multiple articles I read https://sebastiansauer.github.io/dplyr_filter/ and https://stackoverflow.com/questions/32829358/dplyr-filter-with-sql-like-wildcard</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>projects_df <span class="ot">&lt;-</span> projects_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&gt;</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&lt;</span> <span class="dv">350000</span>)</span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>projects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom SQL Query 1 = Select specific budget ranges from the project table </span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter is the dplyr libraries version of Like and or according to multiple articles I read https://sebastiansauer.github.io/dplyr_filter/ and https://stackoverflow.com/questions/32829358/dplyr-filter-with-sql-like-wildcard</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>projects_df <span class="ot">&lt;-</span> projects_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&gt;</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&lt;</span> <span class="dv">350000</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>projects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 7
   ProjectID ProjectName     StartDate  EndDate    Budget Status      CustomerID
@@ -525,9 +371,9 @@ Caused by warning:
 1       104 Urban Adventure 2022-10-01 2023-02-31 250000 Completed            4
 2       105 Ocean Odyssey   2023-03-01 2024-06-30 300000 In Progress          5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#custom query 2: Select projectID and AssetID from asset table using the distinct function and the arrange which is dplyrs version of the SQL query DISTINCT and ORDER_BY Reference: https://sparkbyexamples.com/r-programming/dplyr-arrange-function-in-r/#:~:text=R%20arrange()%20Ascending%20Order,either%20ascending%20or%20descending%20order.</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>assets_df <span class="ot">&lt;-</span> assets_df <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(assets_df, <span class="fu">pick</span>(<span class="fu">contains</span>(<span class="st">"ID"</span>))) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(AssetID)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ProjectID))</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>assets_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#custom query 2: Select projectID and AssetID from asset table using the distinct function and the arrange which is dplyrs version of the SQL query DISTINCT and ORDER_BY Reference: https://sparkbyexamples.com/r-programming/dplyr-arrange-function-in-r/#:~:text=R%20arrange()%20Ascending%20Order,either%20ascending%20or%20descending%20order.</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>assets_df <span class="ot">&lt;-</span> assets_df <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(assets_df, <span class="fu">pick</span>(<span class="fu">contains</span>(<span class="st">"ID"</span>))) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(AssetID)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ProjectID))</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>assets_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 42 × 5
    AssetID ProjectID AssetName Type               CreationDate
@@ -544,9 +390,9 @@ Caused by warning:
 10       3       104 Asset 3   3D Model           2021-04-15  
 # ℹ 32 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PART B-A:</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting up the data to be modelled.</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>projects_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PART B-A:</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting up the data to be modelled.</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>projects_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 7
   ProjectID ProjectName       StartDate  EndDate    Budget Status     CustomerID
@@ -560,20 +406,20 @@ Caused by warning:
 7       107 Frozen Frontier   2025-01-01 2025-06-30 400000 Planned             7
 8       108 Cybernetic Dreams 2025-07-01 2025-12-31 450000 Planned             8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>)]</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">StartDate  =</span> <span class="fu">ymd</span>(StartDate),<span class="at">EndDate =</span> <span class="fu">ymd</span>(EndDate)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">DifferenceInDays =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(EndDate, StartDate, <span class="at">units =</span> <span class="st">"days"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>)]</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">StartDate  =</span> <span class="fu">ymd</span>(StartDate),<span class="at">EndDate =</span> <span class="fu">ymd</span>(EndDate)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">DifferenceInDays =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(EndDate, StartDate, <span class="at">units =</span> <span class="st">"days"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: There was 1 warning in `mutate()`.
 ℹ In argument: `EndDate = ymd(EndDate)`.
 Caused by warning:
 !  1 failed to parse.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>Budget <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>Budget</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>DaysInDiff <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>DifferenceInDays</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>Regression <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(Budget <span class="sc">~</span> DifferenceInDays, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Budget,DaysInDiff,<span class="at">col =</span> <span class="st">"red"</span>,</span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">abline</span>(Regression),</span>
-<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Budget"</span>, <span class="at">ylab =</span> <span class="st">"DaysInDifference"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Budget <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>Budget</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>DaysInDiff <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>DifferenceInDays</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>Regression <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(Budget <span class="sc">~</span> DifferenceInDays, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Budget,DaysInDiff,<span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">abline</span>(Regression),</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Budget"</span>, <span class="at">ylab =</span> <span class="st">"DaysInDifference"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in abline(Regression): only using the first two of 8 regression
 coefficients</code></pre>
@@ -581,34 +427,34 @@ coefficients</code></pre>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This should print the plot with the line along but it is not showcasing the line </span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Part B-B</span></span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Interpretting the regression model: It seems as though</span></span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="co">#there is a corelation between the results of Budget</span></span>
-<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="co">#and The days taken to create the fuill project in games development.</span></span>
-<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="co">#There are twom major outliers where the two middle ground</span></span>
-<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="co">#budgets actually take both the shortest and the longest</span></span>
-<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="co">#amount of time out of all of the projects which is a fun</span></span>
-<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="co">#little data observbation. It does apper as though the games</span></span>
-<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a><span class="co">#with higher budgets get amde faster which may be because </span></span>
-<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a><span class="co">#talent is getting paid more or because they have </span></span>
-<span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a><span class="co">#more resources to expend on the project</span></span>
-<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Part B-C</span></span>
-<span id="cb72-16"><a href="#cb72-16" aria-hidden="true" tabindex="-1"></a><span class="co">#  I know from looking at tutorials and other data pieces</span></span>
-<span id="cb72-17"><a href="#cb72-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (source: https://www.youtube.com/watch?v=DY5xMgBQsOU </span></span>
-<span id="cb72-18"><a href="#cb72-18" aria-hidden="true" tabindex="-1"></a><span class="co"># and https://www.youtube.com/watch?v=-mGXnm0fHtI&amp;t=634s)</span></span>
-<span id="cb72-19"><a href="#cb72-19" aria-hidden="true" tabindex="-1"></a><span class="co"># that the linear regression test is very reliable and </span></span>
-<span id="cb72-20"><a href="#cb72-20" aria-hidden="true" tabindex="-1"></a><span class="co"># good for data analytics but unfortunately I don't believe</span></span>
-<span id="cb72-21"><a href="#cb72-21" aria-hidden="true" tabindex="-1"></a><span class="co"># that I have done mine correctly as my line is not drawing</span></span>
-<span id="cb72-22"><a href="#cb72-22" aria-hidden="true" tabindex="-1"></a><span class="co"># on the graph. The data is all there when I rpint the</span></span>
-<span id="cb72-23"><a href="#cb72-23" aria-hidden="true" tabindex="-1"></a><span class="co"># summary but it is not showing on the plot which is </span></span>
-<span id="cb72-24"><a href="#cb72-24" aria-hidden="true" tabindex="-1"></a><span class="co"># incredibly frustrating. As I mentioned before that </span></span>
-<span id="cb72-25"><a href="#cb72-25" aria-hidden="true" tabindex="-1"></a><span class="co"># there are two massive outliers in my data as the two</span></span>
-<span id="cb72-26"><a href="#cb72-26" aria-hidden="true" tabindex="-1"></a><span class="co"># middle projects take the longest and shortest amounts</span></span>
-<span id="cb72-27"><a href="#cb72-27" aria-hidden="true" tabindex="-1"></a><span class="co"># of time in comparison to the budget which is a fun </span></span>
-<span id="cb72-28"><a href="#cb72-28" aria-hidden="true" tabindex="-1"></a><span class="co"># data fact that I thought was interesting. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This should print the plot with the line along but it is not showcasing the line </span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Part B-B</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Interpretting the regression model: It seems as though</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co">#there is a corelation between the results of Budget</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co">#and The days taken to create the fuill project in games development.</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co">#There are twom major outliers where the two middle ground</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co">#budgets actually take both the shortest and the longest</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="co">#amount of time out of all of the projects which is a fun</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co">#little data observbation. It does apper as though the games</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co">#with higher budgets get amde faster which may be because </span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="co">#talent is getting paid more or because they have </span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="co">#more resources to expend on the project</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Part B-C</span></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="co">#  I know from looking at tutorials and other data pieces</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (source: https://www.youtube.com/watch?v=DY5xMgBQsOU </span></span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a><span class="co"># and https://www.youtube.com/watch?v=-mGXnm0fHtI&amp;t=634s)</span></span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a><span class="co"># that the linear regression test is very reliable and </span></span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a><span class="co"># good for data analytics but unfortunately I don't believe</span></span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a><span class="co"># that I have done mine correctly as my line is not drawing</span></span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a><span class="co"># on the graph. The data is all there when I rpint the</span></span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a><span class="co"># summary but it is not showing on the plot which is </span></span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a><span class="co"># incredibly frustrating. As I mentioned before that </span></span>
+<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a><span class="co"># there are two massive outliers in my data as the two</span></span>
+<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a><span class="co"># middle projects take the longest and shortest amounts</span></span>
+<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a><span class="co"># of time in comparison to the budget which is a fun </span></span>
+<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a><span class="co"># data fact that I thought was interesting. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
