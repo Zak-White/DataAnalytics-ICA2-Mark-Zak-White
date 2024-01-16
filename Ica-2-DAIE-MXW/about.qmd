@@ -1,9 +1,22 @@
 ---
-title: "About"
+title: "Technology Exploration"
 ---
 
 About this site
 
 ```{r}
-1 + 1
+# The Technology Exploration that I utilised is in a few 
+# of the packages that I needed to use for completing
+# the queries in part A. The new ones as far as I am aware
+# are: Stringr and Lubridate both of which I use for some
+# of the queries that I create in part A. The main functions
+# of Lubridate seem to be with the changing of date formatting
+# (atleast this is how I used it) to fit in with the diff time 
+# function that comes prepackaged with R. 
+# 
+# Stringr on the other hand I use less often but it comes packaged 
+# with a function that allows me to directly count how many times a 
+# string has shown up that I try to use for a question in part A. 
+# I believe my logic in answering that question was correct but it
+# might be my exectution that was off. 
 ```
