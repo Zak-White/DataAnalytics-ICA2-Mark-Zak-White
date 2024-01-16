@@ -137,7 +137,10 @@ plot(Budget,DaysInDiff,col = "red",
 
 #Part B-B
 #Interpretting the regression model: It seems as thoughj there is a corelation between the results of Budget and The days taken to create the fuill project in games development.
-#There are twom major outliers where the two middle ground budgets actually take both the shortest and the longest amount of time out of all of the projects which is a fun little data observbation 
+#There are twom major outliers where the two middle ground budgets actually take both the shortest and the longest amount of time out of all of the projects which is a fun little data observbation. It does apper as though the games with higher budgets get amde faster which may be because talent is getting paid more or because they have more resources to expend on the project
+
+#Part B-C
+# I know from looking at tutorials and other data pieces (source: https://www.youtube.com/watch?v=DY5xMgBQsOU and https://www.youtube.com/watch?v=-mGXnm0fHtI&t=634s) that the linear regression test is very reliable and good for data analytics but unfortunately I don't believe that I have done mine correctly as my line is not drawing on the graph. The data is all there when I rpint the summary but it is not showing on the plot which is incredibly frustrating. As I mentioned before that there are two massive outliers in my data as the two middle projects take the longest and shortest amounts of time in comparison to the budget which is a fun data fact that I thought was interesting. 
 
 
 
