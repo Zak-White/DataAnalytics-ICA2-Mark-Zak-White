@@ -546,40 +546,39 @@ Caused by warning:
 </div>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PART B:</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting up the data to be modelled.</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>TimeLineBudget_df <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(timelines_df, projects_df2,</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"ProjectID"</span>))</span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>TimeLineBudget_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>projects_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 11
-  TimelineID ProjectID Milestone     ExpectedCompletionDate ActualCompletionDate
-       &lt;int&gt;     &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                  &lt;chr&gt;               
-1          1       101 Beta Release  2021-01-15             2021-01-14          
-2          2       102 Beta Release  2021-07-15             2021-07-14          
-3          3       103 Beta Release  2022-03-15             2022-03-14          
-4          4       104 Beta Release  2022-10-15             2022-10-14          
-5          5       105 Beta Release  2023-03-01             &lt;NA&gt;                
-6          6       106 Pre-producti… 2023-10-01             &lt;NA&gt;                
-7          7       107 Project Plan… 2024-03-01             &lt;NA&gt;                
-8          8       108 Project Plan… 2024-10-01             &lt;NA&gt;                
-# ℹ 6 more variables: ProjectName &lt;chr&gt;, StartDate &lt;chr&gt;, EndDate &lt;chr&gt;,
-#   Budget &lt;int&gt;, Status &lt;chr&gt;, CustomerID &lt;int&gt;</code></pre>
+<pre><code># A tibble: 8 × 7
+  ProjectID ProjectName       StartDate  EndDate    Budget Status     CustomerID
+      &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+1       101 Galaxy Quest      2021-01-01 2021-09-30 100000 Completed           1
+2       102 Mystic Realms     2021-10-01 2021-12-31 200000 Completed           2
+3       103 Shadow Legacy     2022-01-01 2022-09-30 150000 Completed           3
+4       104 Urban Adventure   2022-10-01 2023-02-31 250000 Completed           4
+5       105 Ocean Odyssey     2023-03-01 2024-06-30 300000 In Progre…          5
+6       106 Desert Survival   2024-07-01 2024-12-31 350000 Planned             6
+7       107 Frozen Frontier   2025-01-01 2025-06-30 400000 Planned             7
+8       108 Cybernetic Dreams 2025-07-01 2025-12-31 450000 Planned             8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>TimeLineBudget_df<span class="ot">&lt;-</span> TimeLineBudget_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ProjectID) <span class="sc">%&gt;%</span> </span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">ActualCompletionDate =</span> <span class="fu">ymd</span>(ActualCompletionDate),<span class="at">ExpectedCompletionDate =</span> <span class="fu">ymd</span>(ExpectedCompletionDate)) <span class="sc">%&gt;%</span> </span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">DifferenceInDays=</span><span class="fu">as.numeric</span>(<span class="fu">difftime</span>(ActualCompletionDate, ExpectedCompletionDate, <span class="at">units =</span> <span class="st">"days"</span>)))</span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>TimeLineBudget_df <span class="ot">&lt;-</span> TimeLineBudget_df[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>)]</span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>TimeLineBudget_df <span class="ot">&lt;-</span> TimeLineBudget_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,]</span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>TimeLineBudget_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-# Groups:   ProjectID [4]
-  ProjectID Budget DifferenceInDays
-      &lt;int&gt;  &lt;int&gt;            &lt;dbl&gt;
-1       101 100000               -1
-2       102 200000               -1
-3       103 150000               -1
-4       104 250000               -1</code></pre>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>)]</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">StartDate  =</span> <span class="fu">ymd</span>(StartDate),<span class="at">EndDate =</span> <span class="fu">ymd</span>(EndDate)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">DifferenceInDays =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(EndDate, StartDate, <span class="at">units =</span> <span class="st">"days"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `EndDate = ymd(EndDate)`.
+Caused by warning:
+!  1 failed to parse.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>Budget <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>Budget</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>DaysInDiff <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>DifferenceInDays</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Budget,DaysInDiff)</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>Regression <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(Budget <span class="sc">~</span> DifferenceInDays, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(Regression)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in abline(Regression): only using the first two of 8 regression
+coefficients</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 

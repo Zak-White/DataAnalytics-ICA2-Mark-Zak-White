@@ -124,15 +124,14 @@ assets_df
 
 #PART B:
 #Setting up the data to be modelled.
-TimeLineBudget_df <- inner_join(timelines_df, projects_df2,
-                                by = c("ProjectID"))
-TimeLineBudget_df
-TimeLineBudget_df<- TimeLineBudget_df %>% group_by(ProjectID) %>% 
-mutate(ActualCompletionDate = ymd(ActualCompletionDate),ExpectedCompletionDate = ymd(ExpectedCompletionDate)) %>% 
-mutate(DifferenceInDays=as.numeric(difftime(ActualCompletionDate, ExpectedCompletionDate, units = "days")))
+projects_df2
+projects_df2 <- projects_df2[,-c(6,7)]
+projects_df2 <- projects_df2 %>% mutate(StartDate  = ymd(StartDate),EndDate = ymd(EndDate)) %>% mutate(DifferenceInDays = as.numeric(difftime(EndDate, StartDate, units = "days")))
+Budget <- projects_df2$Budget
+DaysInDiff <- projects_df2$DifferenceInDays
+plot(Budget,DaysInDiff)
+Regression <- projects_df2 %>% lm(Budget ~ DifferenceInDays, data = .) %>% summary()
+abline(Regression)
 
-TimeLineBudget_df <- TimeLineBudget_df[,-c(1,3,4,5,6,7,8,10,11)]
-TimeLineBudget_df <- TimeLineBudget_df[1:4,]
-TimeLineBudget_df
 
 ```
