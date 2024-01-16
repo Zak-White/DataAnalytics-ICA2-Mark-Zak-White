@@ -122,7 +122,7 @@ assets_df <- assets_df %>% distinct(assets_df, pick(contains("ID"))) %>% arrange
 assets_df
 
 
-#PART B:
+#PART B-A:
 #Setting up the data to be modelled.
 projects_df2
 projects_df2 <- projects_df2[,-c(6,7)]
@@ -133,7 +133,12 @@ Regression <- projects_df2 %>% lm(Budget ~ DifferenceInDays, data = .) %>% summa
 plot(Budget,DaysInDiff,col = "red",
      abline(Regression),
      xlab = "Budget", ylab = "DaysInDifference")
-projects_df2
+#This should print the plot with the line along but it is not showcasing the line 
+
+#Part B-B
+#Interpretting the regression model: It seems as thoughj there is a corelation between the results of Budget and The days taken to create the fuill project in games development.
+#There are twom major outliers where the two middle ground budgets actually take both the shortest and the longest amount of time out of all of the projects which is a fun little data observbation 
+
 
 
 ```
