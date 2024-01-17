@@ -1,0 +1,6 @@
+GitHub Link:
+https://github.com/Zak-White/DataAnalytics-ICA2-Mark-Zak-White
+
+Only one repository as I never got to do part C. Explenation in conclusion and in readme apologies
+
+References are in the project as comments
