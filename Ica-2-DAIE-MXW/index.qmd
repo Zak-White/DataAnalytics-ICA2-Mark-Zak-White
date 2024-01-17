@@ -172,9 +172,7 @@ plot(Budget,DaysInDiff,col = "red",
 # player data and preferences. It also can tell you the close relationship between factors that you might not
 # even consider as a project planner or as a developer to a player feedback. 
 # 
-# Overall while I am furstrated with my result I feel like the rpoject was a good learning point for me as a 
-# person as I have started to learn a skill in rsql and data analyasis and even if I am not good at it now
-# with time and practise I can always imrpove.
+# Overall while I am furstrated with my result I feel like the project was a good learning point for me as a person as I have started to learn a skill in rsql and data analyasis and even if I am not good at it now with time and practise I can always imrpove. It is a shame that I didn't plan this out well enough to do part C at all
 
 
 
