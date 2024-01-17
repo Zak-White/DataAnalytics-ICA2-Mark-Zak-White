@@ -67,9 +67,7 @@ AssetsProjects_df
 
 #A-3 Going to create a table that adds projects and developers and where the project is completed it will print that out
 status <- projects_df$Status
-status
 ComStatus <- sum(str_count(status, "Completed"))
-projectdevelopers_df
 projectdevelopers_df <- projectdevelopers_df %>% mutate(Status = status) %>% group_by(DeveloperID) %>% summarize(DevComplete = ComStatus) %>% arrange(desc(ComStatus))
 #I am not sure why they are all equal to 4 as I thought the group by would split it per case but This is the basics of How you would do this question
 projectdevelopers_df <-projectdevelopers_df[1:3,] #This is how you select the top 3 values
@@ -124,6 +122,59 @@ plot(Budget,DaysInDiff,col = "red",
 # middle projects take the longest and shortest amounts
 # of time in comparison to the budget which is a fun 
 # data fact that I thought was interesting. 
+
+
+#Part E: Quality and Conclusion
+#                           Document Formatting
+#I would like to quickly comment on the structure of the report. I feel like my report
+#is structured well and it is easy to see what everything is as I have comments above 
+#each question to show what it is and explain a little bit of what it does. The tables
+#themseleves are very clear as I only print out the nessesary values on each table for 
+#each question. I feel like the webpage itself is not formattted the best but I really
+#tried my best and I just didn't really understand it.
+
+#                           Suitability of Tables:
+#This will be short as I feel like all of my tables hit all of the breifs points here and
+#I see not issues with what I created in terms of the tables. They are all clear to read
+#and shows the relvant data
+
+#                           Suitability of Plots:
+#I only use one plot in this project and I believe it is suitable for what I am attempting to do.
+#The main issue with my plot is that the abline is not working correctly so i feel like I may
+#have done the linear regression wrong even though I followed the linked tutorials and also 
+#created what I thought would be suitable data. It also appears as I am wrting this down that 
+#I misread the question and have used incorrect data instead of the team size but it is to
+#late for me to go back and change it at this stage.
+
+#           Adherence to Best Practices in Coding and Data Visualization:
+#I will keep this short. I believe that I manage to keep my code nice, neat and Ledgible.
+
+
+#                           Conclusion and Reflection:
+#In starting my conclusion i am going to emntion that I found this very hard. Much harder
+# than I had anticipated and as such I have ended up having to leave out an entire section of
+# the brief much to my own frustration. I have no idea why I struggled with this so much as I
+# thought I had a good grasp of the concepts following the exam and the GCA both of which I belive
+# I have done well in.
+# 
+# I believe that I have done part A well and have answered most if not all the questions suffiecently
+# Part B is up in the air as to wether any of the work is salvadgable. I believe that I was acting on
+# sound logic after researching it online but I cannot know right now as it does not appear to be working.
+# 
+# Despite my frustrations with this project There was a great feeling of accomplishment when I even
+# got a question half working or when I troobleshot a line of code. This did make me feel good and
+# that I may be able to figure this stuff out.
+# 
+# Even though I admit I struggle with the module I do find it interesting and I do think that it has a space
+# in the wider games development industry. As some of the queries show not only can it show you correlation
+# between budgets and other factors it can also allow the developers to round up and analys feedback so much
+# easier than without it. Using data Tables or even databases is very useful for finding out information like
+# player data and preferences. It also can tell you the close relationship between factors that you might not
+# even consider as a project planner or as a developer to a player feedback. 
+# 
+# Overall while I am furstrated with my result I feel like the rpoject was a good learning point for me as a 
+# person as I have started to learn a skill in rsql and data analyasis and even if I am not good at it now
+# with time and practise I can always imrpove.
 
 
 

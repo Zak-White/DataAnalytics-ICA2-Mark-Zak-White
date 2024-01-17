@@ -118,10 +118,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">Technology Exploration</span></a>
-  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">about.qmd</span></li>
 </ul>
             <div class="quarto-navbar-tools ms-auto">
 </div>
@@ -334,24 +332,10 @@ Caused by warning:
 [6] "Planned"     "Planned"     "Planned"    </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ComStatus <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">str_count</span>(status, <span class="st">"Completed"</span>))</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 3
-  ProjectID DeveloperID Role 
-      &lt;int&gt;       &lt;int&gt; &lt;chr&gt;
-1       101         214 Lead 
-2       102         213 Lead 
-3       103         201 Lead 
-4       104         213 Lead 
-5       105         214 Lead 
-6       106         211 Lead 
-7       107         214 Lead 
-8       108         211 Lead </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span> projectdevelopers_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> status) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(DeveloperID) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">DevComplete =</span> ComStatus) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ComStatus))</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#I am not sure why they are all equal to 4 as I thought the group by would split it per case but This is the basics of How you would do this question</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span>projectdevelopers_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,] <span class="co">#This is how you select the top 3 values</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span> projectdevelopers_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Status =</span> status) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(DeveloperID) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">DevComplete =</span> ComStatus) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ComStatus))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co">#I am not sure why they are all equal to 4 as I thought the group by would split it per case but This is the basics of How you would do this question</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df <span class="ot">&lt;-</span>projectdevelopers_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,] <span class="co">#This is how you select the top 3 values</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>projectdevelopers_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   DeveloperID DevComplete
@@ -360,10 +344,10 @@ Caused by warning:
 2         211           4
 3         213           4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom SQL Query 1 = Select specific budget ranges from the project table </span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter is the dplyr libraries version of Like and or according to multiple articles I read https://sebastiansauer.github.io/dplyr_filter/ and https://stackoverflow.com/questions/32829358/dplyr-filter-with-sql-like-wildcard</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>projects_df <span class="ot">&lt;-</span> projects_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&gt;</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&lt;</span> <span class="dv">350000</span>)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>projects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom SQL Query 1 = Select specific budget ranges from the project table </span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter is the dplyr libraries version of Like and or according to multiple articles I read https://sebastiansauer.github.io/dplyr_filter/ and https://stackoverflow.com/questions/32829358/dplyr-filter-with-sql-like-wildcard</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>projects_df <span class="ot">&lt;-</span> projects_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&gt;</span> <span class="dv">200000</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Budget <span class="sc">&lt;</span> <span class="dv">350000</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>projects_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 7
   ProjectID ProjectName     StartDate  EndDate    Budget Status      CustomerID
@@ -371,9 +355,9 @@ Caused by warning:
 1       104 Urban Adventure 2022-10-01 2023-02-31 250000 Completed            4
 2       105 Ocean Odyssey   2023-03-01 2024-06-30 300000 In Progress          5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#custom query 2: Select projectID and AssetID from asset table using the distinct function and the arrange which is dplyrs version of the SQL query DISTINCT and ORDER_BY Reference: https://sparkbyexamples.com/r-programming/dplyr-arrange-function-in-r/#:~:text=R%20arrange()%20Ascending%20Order,either%20ascending%20or%20descending%20order.</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>assets_df <span class="ot">&lt;-</span> assets_df <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(assets_df, <span class="fu">pick</span>(<span class="fu">contains</span>(<span class="st">"ID"</span>))) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(AssetID)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ProjectID))</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>assets_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#custom query 2: Select projectID and AssetID from asset table using the distinct function and the arrange which is dplyrs version of the SQL query DISTINCT and ORDER_BY Reference: https://sparkbyexamples.com/r-programming/dplyr-arrange-function-in-r/#:~:text=R%20arrange()%20Ascending%20Order,either%20ascending%20or%20descending%20order.</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>assets_df <span class="ot">&lt;-</span> assets_df <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(assets_df, <span class="fu">pick</span>(<span class="fu">contains</span>(<span class="st">"ID"</span>))) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(AssetID)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ProjectID))</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>assets_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 42 × 5
    AssetID ProjectID AssetName Type               CreationDate
@@ -390,9 +374,9 @@ Caused by warning:
 10       3       104 Asset 3   3D Model           2021-04-15  
 # ℹ 32 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PART B-A:</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting up the data to be modelled.</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>projects_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PART B-A:</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting up the data to be modelled.</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>projects_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 7
   ProjectID ProjectName       StartDate  EndDate    Budget Status     CustomerID
@@ -406,20 +390,20 @@ Caused by warning:
 7       107 Frozen Frontier   2025-01-01 2025-06-30 400000 Planned             7
 8       108 Cybernetic Dreams 2025-07-01 2025-12-31 450000 Planned             8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>)]</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">StartDate  =</span> <span class="fu">ymd</span>(StartDate),<span class="at">EndDate =</span> <span class="fu">ymd</span>(EndDate)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">DifferenceInDays =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(EndDate, StartDate, <span class="at">units =</span> <span class="st">"days"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>)]</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>projects_df2 <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">StartDate  =</span> <span class="fu">ymd</span>(StartDate),<span class="at">EndDate =</span> <span class="fu">ymd</span>(EndDate)) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">DifferenceInDays =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(EndDate, StartDate, <span class="at">units =</span> <span class="st">"days"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: There was 1 warning in `mutate()`.
 ℹ In argument: `EndDate = ymd(EndDate)`.
 Caused by warning:
 !  1 failed to parse.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Budget <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>Budget</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>DaysInDiff <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>DifferenceInDays</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>Regression <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(Budget <span class="sc">~</span> DifferenceInDays, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Budget,DaysInDiff,<span class="at">col =</span> <span class="st">"red"</span>,</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">abline</span>(Regression),</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Budget"</span>, <span class="at">ylab =</span> <span class="st">"DaysInDifference"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>Budget <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>Budget</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>DaysInDiff <span class="ot">&lt;-</span> projects_df2<span class="sc">$</span>DifferenceInDays</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>Regression <span class="ot">&lt;-</span> projects_df2 <span class="sc">%&gt;%</span> <span class="fu">lm</span>(Budget <span class="sc">~</span> DifferenceInDays, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Budget,DaysInDiff,<span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">abline</span>(Regression),</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Budget"</span>, <span class="at">ylab =</span> <span class="st">"DaysInDifference"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in abline(Regression): only using the first two of 8 regression
 coefficients</code></pre>
@@ -427,34 +411,87 @@ coefficients</code></pre>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This should print the plot with the line along but it is not showcasing the line </span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Part B-B</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Interpretting the regression model: It seems as though</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co">#there is a corelation between the results of Budget</span></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co">#and The days taken to create the fuill project in games development.</span></span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co">#There are twom major outliers where the two middle ground</span></span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co">#budgets actually take both the shortest and the longest</span></span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="co">#amount of time out of all of the projects which is a fun</span></span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co">#little data observbation. It does apper as though the games</span></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="co">#with higher budgets get amde faster which may be because </span></span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="co">#talent is getting paid more or because they have </span></span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="co">#more resources to expend on the project</span></span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Part B-C</span></span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="co">#  I know from looking at tutorials and other data pieces</span></span>
-<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (source: https://www.youtube.com/watch?v=DY5xMgBQsOU </span></span>
-<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a><span class="co"># and https://www.youtube.com/watch?v=-mGXnm0fHtI&amp;t=634s)</span></span>
-<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a><span class="co"># that the linear regression test is very reliable and </span></span>
-<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a><span class="co"># good for data analytics but unfortunately I don't believe</span></span>
-<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a><span class="co"># that I have done mine correctly as my line is not drawing</span></span>
-<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a><span class="co"># on the graph. The data is all there when I rpint the</span></span>
-<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a><span class="co"># summary but it is not showing on the plot which is </span></span>
-<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a><span class="co"># incredibly frustrating. As I mentioned before that </span></span>
-<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a><span class="co"># there are two massive outliers in my data as the two</span></span>
-<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a><span class="co"># middle projects take the longest and shortest amounts</span></span>
-<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a><span class="co"># of time in comparison to the budget which is a fun </span></span>
-<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a><span class="co"># data fact that I thought was interesting. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This should print the plot with the line along but it is not showcasing the line </span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Part B-B</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Interpretting the regression model: It seems as though</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co">#there is a corelation between the results of Budget</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co">#and The days taken to create the fuill project in games development.</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co">#There are twom major outliers where the two middle ground</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co">#budgets actually take both the shortest and the longest</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co">#amount of time out of all of the projects which is a fun</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="co">#little data observbation. It does apper as though the games</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="co">#with higher budgets get amde faster which may be because </span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a><span class="co">#talent is getting paid more or because they have </span></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="co">#more resources to expend on the project</span></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Part B-C</span></span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a><span class="co">#  I know from looking at tutorials and other data pieces</span></span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (source: https://www.youtube.com/watch?v=DY5xMgBQsOU </span></span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a><span class="co"># and https://www.youtube.com/watch?v=-mGXnm0fHtI&amp;t=634s)</span></span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a><span class="co"># that the linear regression test is very reliable and </span></span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a><span class="co"># good for data analytics but unfortunately I don't believe</span></span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a><span class="co"># that I have done mine correctly as my line is not drawing</span></span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a><span class="co"># on the graph. The data is all there when I rpint the</span></span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a><span class="co"># summary but it is not showing on the plot which is </span></span>
+<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a><span class="co"># incredibly frustrating. As I mentioned before that </span></span>
+<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a><span class="co"># there are two massive outliers in my data as the two</span></span>
+<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a><span class="co"># middle projects take the longest and shortest amounts</span></span>
+<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a><span class="co"># of time in comparison to the budget which is a fun </span></span>
+<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a><span class="co"># data fact that I thought was interesting. </span></span>
+<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-30"><a href="#cb52-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-31"><a href="#cb52-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Part E: Quality and Conclusion</span></span>
+<span id="cb52-32"><a href="#cb52-32" aria-hidden="true" tabindex="-1"></a><span class="co">#                           Document Formatting</span></span>
+<span id="cb52-33"><a href="#cb52-33" aria-hidden="true" tabindex="-1"></a><span class="co">#I would like to quickly comment on the structure of the report. I feel like my report</span></span>
+<span id="cb52-34"><a href="#cb52-34" aria-hidden="true" tabindex="-1"></a><span class="co">#is structured well and it is easy to see what everything is as I have comments above </span></span>
+<span id="cb52-35"><a href="#cb52-35" aria-hidden="true" tabindex="-1"></a><span class="co">#each question to show what it is and explain a little bit of what it does. The tables</span></span>
+<span id="cb52-36"><a href="#cb52-36" aria-hidden="true" tabindex="-1"></a><span class="co">#themseleves are very clear as I only print out the nessesary values on each table for </span></span>
+<span id="cb52-37"><a href="#cb52-37" aria-hidden="true" tabindex="-1"></a><span class="co">#each question. I feel like the webpage itself is not formattted the best but I really</span></span>
+<span id="cb52-38"><a href="#cb52-38" aria-hidden="true" tabindex="-1"></a><span class="co">#tried my best and I just didn't really understand it.</span></span>
+<span id="cb52-39"><a href="#cb52-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-40"><a href="#cb52-40" aria-hidden="true" tabindex="-1"></a><span class="co">#                           Suitability of Tables:</span></span>
+<span id="cb52-41"><a href="#cb52-41" aria-hidden="true" tabindex="-1"></a><span class="co">#This will be short as I feel like all of my tables hit all of the breifs points here and</span></span>
+<span id="cb52-42"><a href="#cb52-42" aria-hidden="true" tabindex="-1"></a><span class="co">#I see not issues with what I created in terms of the tables. They are all clear to read</span></span>
+<span id="cb52-43"><a href="#cb52-43" aria-hidden="true" tabindex="-1"></a><span class="co">#and shows the relvant data</span></span>
+<span id="cb52-44"><a href="#cb52-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-45"><a href="#cb52-45" aria-hidden="true" tabindex="-1"></a><span class="co">#                           Suitability of Plots:</span></span>
+<span id="cb52-46"><a href="#cb52-46" aria-hidden="true" tabindex="-1"></a><span class="co">#I only use one plot in this project and I believe it is suitable for what I am attempting to do.</span></span>
+<span id="cb52-47"><a href="#cb52-47" aria-hidden="true" tabindex="-1"></a><span class="co">#The main issue with my plot is that the abline is not working correctly so i feel like I may</span></span>
+<span id="cb52-48"><a href="#cb52-48" aria-hidden="true" tabindex="-1"></a><span class="co">#have done the linear regression wrong even though I followed the linked tutorials and also </span></span>
+<span id="cb52-49"><a href="#cb52-49" aria-hidden="true" tabindex="-1"></a><span class="co">#created what I thought would be suitable data. It also appears as I am wrting this down that </span></span>
+<span id="cb52-50"><a href="#cb52-50" aria-hidden="true" tabindex="-1"></a><span class="co">#I misread the question and have used incorrect data instead of the team size but it is to</span></span>
+<span id="cb52-51"><a href="#cb52-51" aria-hidden="true" tabindex="-1"></a><span class="co">#late for me to go back and change it at this stage.</span></span>
+<span id="cb52-52"><a href="#cb52-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-53"><a href="#cb52-53" aria-hidden="true" tabindex="-1"></a><span class="co">#           Adherence to Best Practices in Coding and Data Visualization:</span></span>
+<span id="cb52-54"><a href="#cb52-54" aria-hidden="true" tabindex="-1"></a><span class="co">#I will keep this short. I believe that I manage to keep my code nice, neat and Ledgible.</span></span>
+<span id="cb52-55"><a href="#cb52-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-56"><a href="#cb52-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-57"><a href="#cb52-57" aria-hidden="true" tabindex="-1"></a><span class="co">#                           Conclusion and Reflection:</span></span>
+<span id="cb52-58"><a href="#cb52-58" aria-hidden="true" tabindex="-1"></a><span class="co">#In starting my conclusion i am going to emntion that I found this very hard. Much harder</span></span>
+<span id="cb52-59"><a href="#cb52-59" aria-hidden="true" tabindex="-1"></a><span class="co"># than I had anticipated and as such I have ended up having to leave out an entire section of</span></span>
+<span id="cb52-60"><a href="#cb52-60" aria-hidden="true" tabindex="-1"></a><span class="co"># the brief much to my own frustration. I have no idea why I struggled with this so much as I</span></span>
+<span id="cb52-61"><a href="#cb52-61" aria-hidden="true" tabindex="-1"></a><span class="co"># thought I had a good grasp of the concepts following the exam and the GCA both of which I belive</span></span>
+<span id="cb52-62"><a href="#cb52-62" aria-hidden="true" tabindex="-1"></a><span class="co"># I have done well in.</span></span>
+<span id="cb52-63"><a href="#cb52-63" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb52-64"><a href="#cb52-64" aria-hidden="true" tabindex="-1"></a><span class="co"># I believe that I have done part A well and have answered most if not all the questions suffiecently</span></span>
+<span id="cb52-65"><a href="#cb52-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Part B is up in the air as to wether any of the work is salvadgable. I believe that I was acting on</span></span>
+<span id="cb52-66"><a href="#cb52-66" aria-hidden="true" tabindex="-1"></a><span class="co"># sound logic after researching it online but I cannot know right now as it does not appear to be working.</span></span>
+<span id="cb52-67"><a href="#cb52-67" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb52-68"><a href="#cb52-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Despite my frustrations with this project There was a great feeling of accomplishment when I even</span></span>
+<span id="cb52-69"><a href="#cb52-69" aria-hidden="true" tabindex="-1"></a><span class="co"># got a question half working or when I troobleshot a line of code. This did make me feel good and</span></span>
+<span id="cb52-70"><a href="#cb52-70" aria-hidden="true" tabindex="-1"></a><span class="co"># that I may be able to figure this stuff out.</span></span>
+<span id="cb52-71"><a href="#cb52-71" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb52-72"><a href="#cb52-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Even though I admit I struggle with the module I do find it interesting and I do think that it has a space</span></span>
+<span id="cb52-73"><a href="#cb52-73" aria-hidden="true" tabindex="-1"></a><span class="co"># in the wider games development industry. As some of the queries show not only can it show you correlation</span></span>
+<span id="cb52-74"><a href="#cb52-74" aria-hidden="true" tabindex="-1"></a><span class="co"># between budgets and other factors it can also allow the developers to round up and analys feedback so much</span></span>
+<span id="cb52-75"><a href="#cb52-75" aria-hidden="true" tabindex="-1"></a><span class="co"># easier than without it. Using data Tables or even databases is very useful for finding out information like</span></span>
+<span id="cb52-76"><a href="#cb52-76" aria-hidden="true" tabindex="-1"></a><span class="co"># player data and preferences. It also can tell you the close relationship between factors that you might not</span></span>
+<span id="cb52-77"><a href="#cb52-77" aria-hidden="true" tabindex="-1"></a><span class="co"># even consider as a project planner or as a developer to a player feedback. </span></span>
+<span id="cb52-78"><a href="#cb52-78" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb52-79"><a href="#cb52-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Overall while I am furstrated with my result I feel like the rpoject was a good learning point for me as a </span></span>
+<span id="cb52-80"><a href="#cb52-80" aria-hidden="true" tabindex="-1"></a><span class="co"># person as I have started to learn a skill in rsql and data analyasis and even if I am not good at it now</span></span>
+<span id="cb52-81"><a href="#cb52-81" aria-hidden="true" tabindex="-1"></a><span class="co"># with time and practise I can always imrpove.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
